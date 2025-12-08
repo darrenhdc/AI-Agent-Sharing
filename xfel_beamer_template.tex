@@ -1,0 +1,1048 @@
+%\documentclass[10pt]{beamer} % 4/3 aspect ration works as well
+\documentclass[10pt,aspectratio=169]{beamer}
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND THEMES
+%----------------------------------------------------------------------------------------
+
+\mode<presentation>{
+  \usetheme{EuXFEL}
+  \usecolortheme{EuXFEL}
+}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{helvet}
+\usepackage[T1]{fontenc}
+\usepackage[UTF8, fontset=none]{ctex}
+\setCJKmainfont[BoldFont=STHeiti, ItalicFont=STKaiti]{STSong}
+\setCJKsansfont{STHeiti}
+\setCJKmonofont{STFangsong}
+\xeCJKsetup{CJKmath=true, PlainEquation=true}
+\usepackage{tikz}
+\usetikzlibrary{shapes, arrows, calc, positioning}
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{shadows, backgrounds, fit}
+\usetikzlibrary{decorations.pathmorphing}
+\usepackage{amsmath,amssymb}%,amsthm,amsxtra,mathabx}
+\usepackage{lipsum}
+\usepackage{verbatim}
+\usepackage{datetime}
+\usepackage{booktabs}
+\usepackage{colortbl}
+\usepackage{xcolor}
+\usepackage{multirow}
+\usepackage{array}
+
+
+\renewcommand{\familydefault}{\sfdefault}
+\renewcommand\mathfamilydefault{}
+\newcommand{\colorbf}[1]{{\color{xOrange}\textbf{#1}}}
+
+\newdateformat{dmydate}{%
+    \twodigit{\THEDAY}~\monthname[\THEMONTH] \THEYEAR
+%    \dayofweekname{\THEDAY}{\THEMONTH}{\THEYEAR} \twodigit{\THEDAY}~\monthname[\THEMONTH] \THEYEAR      
+}   
+
+\title[AI Agent 赋能 IT 企业]{智能进化：AI Agent 重塑 IT 生产力}
+\subtitle{从 Copilot 到 Autopilot，开启企业提效新范式}
+
+\author{Darren Cui} % Your name
+\institute[] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{\noindent
+  HKHPC Team
+}
+\date{10 Dec 2025} % Date, can be changed to a custom date
+
+\setbeamersize{text margin left=.05\pdfpagewidth,text margin right=.05\pdfpagewidth}
+
+%\vfill
+%\includegraphics[scale=0.55,keepaspectratio]{desy_logo.pdf}
+
+
+\begin{document}
+
+% ============ 第一部分：开篇与背景 ============
+{
+  \setbeamertemplate{headline}{}
+  \begin{frame}
+    \titlepage
+   \end{frame}
+}
+
+% Slide 2: 行业现状 - IT生产模式的"内卷"困境
+\begin{frame}{行业现状：IT 生产模式的"内卷"困境}
+  \begin{columns}[T]
+  \column{0.48\textwidth}
+  \textbf{\large 现状与痛点}
+  \vspace{0.3cm}
+  \begin{itemize}
+    \item \textbf{需求堆积} \\
+    \small 交付周期冗长，排期成为常态
+    \vspace{0.2cm}
+    \item \textbf{重复劳动} \\
+    \small CRUD、告警处理、脚手架搭建占据大量人力
+    \vspace{0.2cm}
+    \item \textbf{协作成本高} \\
+    \small 跨部门沟通复杂，信息孤岛严重
+    \vspace{0.2cm}
+    \item \textbf{学习负担重} \\
+    \small 技术栈快速演进，学习成本持续上升
+  \end{itemize}
+  
+  \column{0.48\textwidth}
+  \textbf{\large 核心问题}
+  \vspace{0.3cm}
+  \begin{block}{}
+    \textbf{过去的做法：}\\
+    靠"堆人力"解决效率问题
+    
+    \vspace{0.5cm}
+    \textbf{新的选择：}\\
+    转向"\colorbf{堆算力 + 智能}"的生产方式
+  \end{block}
+  
+  \vspace{0.5cm}
+  \begin{alertblock}{引出思考}
+    我们真正需要的，不是一个更聪明的\textbf{搜索框}，\\
+    而是能"\textbf{自己干活}"的 \colorbf{AI Agent}
+  \end{alertblock}
+  \end{columns}
+\end{frame}
+
+% Slide 3: 概念重构 - 什么是AI Agent
+\begin{frame}{概念重构：AI Agent 的本质}
+  \begin{block}{定义：什么是 AI Agent？}
+    具备\textbf{四个核心能力}的自主智能体
+  \end{block}
+  
+  \vspace{0.3cm}
+  \begin{columns}[T]
+  \column{0.24\textwidth}
+  \centering
+  \tikz[baseline=-0.5ex]{
+    \node[draw=xOrange, fill=xOrange!20, circle, minimum size=1.2cm, font=\small\bfseries] {感知};
+  }
+  \\\small Perception\\
+  \tiny 理解环境与上下文
+  
+  \column{0.24\textwidth}
+  \centering
+  \tikz[baseline=-0.5ex]{
+    \node[draw=xOrange, fill=xOrange!20, circle, minimum size=1.2cm, font=\small\bfseries] {规划};
+  }
+  \\\small Planning\\
+  \tiny 分解目标、设计步骤
+  
+  \column{0.24\textwidth}
+  \centering
+  \tikz[baseline=-0.5ex]{
+    \node[draw=xOrange, fill=xOrange!20, circle, minimum size=1.2cm, font=\small\bfseries] {记忆};
+  }
+  \\\small Memory\\
+  \tiny 保存状态与知识
+  
+  \column{0.24\textwidth}
+  \centering
+  \tikz[baseline=-0.5ex]{
+    \node[draw=xOrange, fill=xOrange!20, circle, minimum size=1.2cm, font=\small\bfseries] {工具};
+  }
+  \\\small Tool Use\\
+  \tiny 调用API、执行脚本
+  \end{columns}
+  
+  \vspace{0.5cm}
+  \begin{block}{我的第一感受：知识工具链的"隐形升级"}
+    \small
+    学编程：不再翻用户手册 | Debug：不再逛 StackOverflow\\
+    \textit{但它们并没消失，而是融入模型训练数据与知识库，\\
+    变成由 AI 帮我们筛选与组织的"隐形背后知识"}
+  \end{block}
+\end{frame}
+
+% Slide 4: 三种形态对比表
+\begin{frame}{三种形态对比：LLM vs Copilot vs AI Agent}
+  \small
+  \begin{table}
+  \centering
+  \begin{tabular}{>{\centering\arraybackslash}p{2.5cm}|>{\raggedright\arraybackslash}p{3.5cm}|>{\raggedright\arraybackslash}p{3.5cm}|>{\raggedright\arraybackslash}p{3.5cm}}
+  \toprule
+  \rowcolor{xOrange!30}
+  \textbf{类型} & \textbf{LLM} & \textbf{Copilot} & \textbf{AI Agent} \\
+  \midrule
+  \textbf{核心能力} & 会"想"，不会"做" & 人主导，AI 辅助 & \cellcolor{xOrange!10}目标驱动，自主拆解 \\
+  \midrule
+  \textbf{本质} & 强大的文本预测与推理引擎 & 人写提示 → AI 给建议 → 人审批执行 & \cellcolor{xOrange!10}自动调用工具、读写文件、执行脚本，形成闭环 \\
+  \midrule
+  \textbf{用户角色} & 提问者 & 操作执行者 & \cellcolor{xOrange!10}目标设定者与审核者 \\
+  \bottomrule
+  \end{tabular}
+  \end{table}
+  
+  \vspace{0.5cm}
+  \begin{block}{关键转变}
+    \centering
+    从"人操作，AI 建议" → \colorbf{"人设定目标，AI 自主执行"}
+  \end{block}
+\end{frame}
+
+% Slide 5: Agent Pipeline架构图
+\begin{frame}{标准 Agent Pipeline：从输入到输出的完整闭环}
+  \centering
+  \begin{tikzpicture}[
+    node distance=1.5cm,
+    box/.style={rectangle, draw=xOrange, fill=xOrange!20, thick, minimum width=2.5cm, minimum height=1cm, rounded corners, font=\small\bfseries},
+    arrow/.style={->, >=stealth, thick, xOrange}
+  ]
+    % Nodes
+    \node[box] (input) {用户目标/\\任务描述};
+    \node[box, right=of input] (llm) {LLM\\理解与生成};
+    \node[box, right=of llm] (plan) {Planning\\任务拆解};
+    \node[box, below=0.8cm of plan] (memory) {Memory\\短期/长期记忆};
+    \node[box, left=of memory] (tools) {Tools\\API/命令/DB};
+    \node[box, left=of tools] (output) {执行结果\\报告/代码};
+    
+    % Arrows
+    \draw[arrow] (input) -- (llm);
+    \draw[arrow] (llm) -- (plan);
+    \draw[arrow] (plan) -- (memory);
+    \draw[arrow] (memory) -- (tools);
+    \draw[arrow] (tools) -- (output);
+    
+    % Feedback loop
+    \draw[arrow, dashed, xDarkBlue] (tools) to[bend right=30] node[below, font=\tiny] {反馈循环} (llm);
+  \end{tikzpicture}
+  
+  \vspace{0.5cm}
+  \begin{itemize}
+    \item \textbf{Memory：}短期记忆（当前对话状态） + 长期记忆（知识库、历史成果）
+    \item \textbf{Tools：}代码执行、命令行、HTTP 请求、数据库操作等
+  \end{itemize}
+\end{frame}
+
+% ============ 第二部分：个人使用演进 ============
+% Slide 6: 从复制粘贴到对话式IDE的四阶段
+\begin{frame}[fragile]{我如何一步步走到 AI Agent：四阶段演进}
+  {\small
+  \begin{tikzpicture}[
+    stage/.style={rectangle, draw=xOrange, fill=xOrange!10, thick, minimum width=2.8cm, minimum height=2.2cm, rounded corners, align=center, font=\tiny},
+    arrow/.style={->, >=stealth, ultra thick, xOrange}
+  ]
+    \node[stage] (s1) at (0,0) {\textbf{阶段 1}\\网页Chat界面\\粘贴报错、问问题\\\\{\color{red}×} 操作割裂\\{\color{red}×} 理解有限};
+    \node[stage] (s2) at (3.5,0) {\textbf{阶段 2}\\IDE内置Copilot\\侧边栏对话\\\\{\color{green!70!black}√} 一个窗口完成\\{\color{red}×} 需要approve};
+    \node[stage] (s3) at (7,0) {\textbf{阶段 3}\\Claude Code\\命令行交互\\\\{\color{green!70!black}√} 真正协作工程师\\{\color{green!70!black}√} 多终端并行};
+    \node[stage] (s4) at (10.5,0) {\textbf{阶段 4}\\Claude + MCP\\万物皆可Agent\\\\{\color{green!70!black}√} 接管工作流\\{\color{blue}探索中...};
+    
+    \draw[arrow] (s1) -- (s2);
+    \draw[arrow] (s2) -- (s3);
+    \draw[arrow] (s3) -- (s4);
+  \end{tikzpicture}}
+  
+  \vspace{0.5cm}
+  {\small
+  \begin{columns}[T]
+  \column{0.48\textwidth}
+  \textbf{阶段 3 的突破：}
+  \begin{itemize}
+    \item "帮我在这个项目里加一个xx功能"
+    \item 自动分析项目结构、生成修改、运行命令
+    \item 更像是真正的协作工程师
+  \end{itemize}
+  
+  \column{0.48\textwidth}
+  \textbf{阶段 4 的愿景：}
+  \begin{itemize}
+    \item 通过 MCP 协议暴露工具、服务、数据源
+    \item Agent 不只是写代码，而是接管更多工作流
+    \item 仍在探索中
+  \end{itemize}
+  \end{columns}}
+\end{frame}
+
+% Slide 7: 工具生态与地域限制
+\begin{frame}{工具生态与现实限制：在中国大陆怎么活用这些 Agent？}
+  \begin{columns}[T]
+  \column{0.55\textwidth}
+  \textbf{主流 SWE AI Agent 工具}
+  \vspace{0.2cm}
+  \small
+  \begin{table}
+  \centering
+  \begin{tabular}{lcc}
+  \toprule
+  \textbf{工具} & \textbf{大陆可用} & \textbf{安装难度} \\
+  \midrule
+  Claude Code & \cellcolor{red!20}× & 低 \\
+  Gemini CLI & \cellcolor{red!20}× & 低 \\
+  Codex & \cellcolor{red!20}× & 低 \\
+  \rowcolor{green!20}
+  Copilot CLI & \cellcolor{green!40}√ & 低 \\
+  \bottomrule
+  \end{tabular}
+  \end{table}
+  
+  \vspace{0.3cm}
+  \textbf{安装门槛：}几乎都接近"一键安装"\\
+  \small 例：\texttt{brew install gemini-cli}
+  
+  \column{0.42\textwidth}
+  \begin{block}{我的绕过实践}
+    \scriptsize
+    \textbf{Gemini CLI：}
+    \begin{enumerate}
+      \item 在 console.cloud.google.com 注册
+      \item 获取 Project ID
+      \item 设置环境变量：\\
+      \texttt{export GOOGLE\_CLOUD\_PROJECT="..."} 
+      \item Gmail 登录 Gemini CLI
+      \item 目前稳定使用 Gemini 2.5 Pro
+    \end{enumerate}
+  \end{block}
+  
+  \begin{alertblock}{国内方案}
+    \scriptsize
+    用 Claude Code 框架接入国产模型\\
+    （如豆包 Doubao-seed-code）
+  \end{alertblock}
+  \end{columns}
+\end{frame}
+
+% Slide 8: 兼容玩法与Copilot CLI
+\begin{frame}{兼容玩法：Copilot CLI 作为"中转站"}
+  \begin{block}{现实问题}
+    \begin{itemize}
+      \item 我既想要 Claude Code 那种 Agent 体验
+      \item 又很想用 Claude Sonnet 4.5 本体
+    \end{itemize}
+  \end{block}
+  
+  \vspace{0.3cm}
+  \begin{columns}[T]
+  \column{0.48\textwidth}
+  \textbf{找到的折中解法：}
+  \vspace{0.2cm}
+  \begin{enumerate}
+    \item Copilot CLI 在国内可用
+    \item Copilot CLI 不只支持 GPT 系列（GPT-5.1），还支持 Claude Sonnet 4.5
+    \item 在终端里，用 Copilot CLI 做 Agent
+    \item 通过它"曲线接入" Sonnet 4.5
+  \end{enumerate}
+  
+  \column{0.48\textwidth}
+  \textbf{国产模型配置示例：}
+  \vspace{0.2cm}
+  \begin{block}{}
+    \tiny
+    \texttt{// \textasciitilde/.claude/settings.json}\\
+    \{\\
+    \hspace{0.5cm}"env": \{\\
+    \hspace{1cm}"ANTHROPIC\_AUTH\_TOKEN": "<ARK\_API\_KEY>",\\
+    \hspace{1cm}"ANTHROPIC\_BASE\_URL": "https://ark.cn-beijing.volces.com/api/coding",\\
+    \hspace{1cm}"ANTHROPIC\_MODEL": "<Model>"\\
+    \hspace{0.5cm}\}\\
+    \}
+  \end{block}
+  
+  \vspace{0.2cm}
+  \small
+  保留 Claude Code 交互体验 + 国产模型算力
+  \end{columns}
+\end{frame}
+
+% ============ 第三部分：实际案例与思考 ============
+% Slide 9: 案例 - AI帮我写十万字长文Report
+\begin{frame}{案例：AI 帮我写十万字长文 Report（多语种 + 排版）}
+  \begin{columns}[T]
+  \column{0.48\textwidth}
+  \textbf{真实痛点}
+  \vspace{0.2cm}
+  {\scriptsize
+  \begin{itemize}
+    \item \textbf{长文迭代：}需要在已有白皮书基础上迭代\\
+    AI 直接读 PDF → token 消耗大，理解受限
+    \vspace{0.1cm}
+    \item \textbf{多语种同步出版：}英文、简体中文、繁体中文\\
+    传统翻译流程费时费力，改动难同步
+    \vspace{0.1cm}
+    \item \textbf{排版难题：}十万字长文排版、目录、交叉引用\\
+    手动维护非常容易出错
+    \vspace{0.1cm}
+    \item \textbf{同步维护：}一处改动要三处同步，极度麻烦
+  \end{itemize}}
+  
+  \column{0.48\textwidth}
+  \textbf{我的解决方案路径}
+  \vspace{0.2cm}
+  {\scriptsize
+  \begin{enumerate}
+    \item \textbf{PDF 先转成文本}（如 .md）\\
+    \textcolor{green!70!black}{→ token 减少到 1/2 \textasciitilde\ 1/20}
+    \vspace{0.1cm}
+    \item \textbf{"覆盖式修改"优于"重新生成"}\\
+    保留原文备份，AI 在原文上直接润色/重写\\
+    \textcolor{green!70!black}{→ 减少版本不一致}
+    \vspace{0.1cm}
+    \item \textbf{直接让 AI 操作 LaTeX}\\
+    内容插入/修改、语法 debug、图表排版、编译 PDF
+    \vspace{0.1cm}
+    \item \textbf{脚本化 + 工作流自动化}\\
+    使用大模型 API 完成长文翻译\\
+    GitHub Actions 跑流程：\\
+    \textcolor{blue}{\tiny 提交英文版改动 → 自动生成中/英/繁 → LaTeX 编译 → 部署}
+  \end{enumerate}}
+  \end{columns}
+  
+  \vspace{0.3cm}
+  \begin{alertblock}{关键结论}
+    \centering
+    \textbf{整套过程，几乎可以"不写一行代码"}\\
+    \small 如果你有基本的架构思维，剩下的命令、脚本都可由 AI Agent 生成与维护
+  \end{alertblock}
+\end{frame}
+
+% Slide 10: 三点思考 - 如何为AI设计任务
+\begin{frame}{我的三点思考：如何"为 AI 设计任务"}
+  \begin{block}{\textbf{思考一：}AI 更擅长"程序化可操作"的任务}
+    {\scriptsize
+    \begin{itemize}
+      \item \textbf{文本 vs PDF：}纯文本 (.md/.tex) 优于 PDF\\
+      token 更少、没有 OCR 噪音、价格更低
+      \item \textbf{记忆模式认知：}\\
+      上下文记忆：只在当前会话有效\\
+      训练记忆：模型训练时学到的知识，不会因对话而更新\\
+      \textcolor{red}{→ 关键：现在的大模型没有真正的个人长期记忆}\\
+      \textcolor{green!70!black}{→ 所以"知识库 + 脚本化"比指望模型自动记住要现实得多}
+    \end{itemize}}
+  \end{block}
+  
+  \vspace{0.2cm}
+  \begin{block}{\textbf{思考二：}能被脚本化的任务，天然适合交给 Agent}
+    {\scriptsize
+    \begin{itemize}
+      \item Word 排版：很难完全脚本化
+      \item LaTeX 写书/论文：内容编写、排版、Compile 都能脚本化 \textcolor{green!70!black}{→ 非常适合 AI}
+      \item PPT：我这次分享的 PPT 就是用 LaTeX (Beamer) 完成的\\
+      内容、结构、设计规则都可以让 Agent 来执行
+      \item \textbf{总结：}为了用好 AI，我们应该主动把任务"改造"为可脚本化的流程
+    \end{itemize}}
+  \end{block}
+\end{frame}
+
+% Slide 11: 思考三与Prompt套娃
+\begin{frame}{思考三：Domain Knowledge 反而更重要 + Prompt 套娃技巧}
+  \begin{columns}[T]
+  \column{0.48\textwidth}
+  \begin{block}{\small 架构思维 \& Domain Knowledge}
+    \scriptsize
+    \textbf{工程实现层面：}\\
+    工作流（workflow）、CI/CD、YAML 等需要架构理解\\
+    AI 能写 YAML，但你需要知道要什么流程
+    
+    \vspace{0.2cm}
+    \textbf{外行 vs 从业者：}\\
+    外行："我要一个网站"\\
+    工程师：前端/后端/测试/运维/部署/监控
+    
+    \vspace{0.2cm}
+    \textbf{类比：}\\
+    设计师知道什么是"毛玻璃特效"\\
+    PPT 设计师知道什么是"分镜"
+    
+    \vspace{0.2cm}
+    \textbf{结论：}\\
+    AI 不会自动赋予你领域知识\\
+    \colorbf{Domain Knowledge 是你驾驭 AI 的"方向盘"}\\
+    AI 更像是\textbf{放大有 domain knowledge 的人的生产力}
+  \end{block}
+  
+  \column{0.48\textwidth}
+  \begin{block}{\small "Prompt 套娃"技巧}
+    \scriptsize
+    \textbf{原始需求：}\\
+    "请帮我写一个网页，加入工业风金属元素，设计高端风格。"
+    
+    \vspace{0.2cm}
+    \textbf{套娃操作：}\\
+    把这个原始需求再喂给 AI：\\
+    让 AI 扮演"\colorbf{硅谷顶尖 UI 设计师 + 资深前端开发}"，\\
+    帮你改写、强化这个 Prompt
+    
+    \vspace{0.2cm}
+    \textbf{得到的强化 Prompt：}\\
+    变成一段带有：
+    {\tiny
+    \begin{itemize}
+      \item 视觉语言（工业风、拉丝金属、磨砂表面）
+      \item 栅格系统规范（12-column grid）
+      \item 动效规则（micro-animations、cubic-bezier）
+      \item 信息架构与 HTML/CSS 结构建议
+    \end{itemize}}
+    直接达到"顶级科技公司视觉规范级别"的描述
+  \end{block}
+  
+  \vspace{0.2cm}
+  \begin{alertblock}{}
+    \scriptsize\centering
+    外行不用一开始就写出完美 Prompt\\
+    让 AI 帮你写给"另一个 AI 的 Prompt" — 低成本、高回报的能力放大器
+  \end{alertblock}
+  \end{columns}
+\end{frame}
+
+% Slide 12: 二次创作与知识再利用
+\begin{frame}{二次创作与知识再利用：AI 放大"二创红利"}
+  \begin{columns}[T]
+  \column{0.48\textwidth}
+  \begin{block}{二创现象}
+    \scriptsize
+    很多平台（如小红书）上：\\
+    \textbf{二次创作者往往拿到更高流量}
+    
+    \vspace{0.2cm}
+    小米 SU7 借鉴保时捷设计就是典型"二创"案例：\\
+    大众对"模仿+再创造"的包容度远高于"照搬抄袭"认知
+  \end{block}
+  
+  \vspace{0.2cm}
+  \begin{block}{没有 AI 时}
+    \scriptsize
+    二创的门槛依然很高：\\
+    视频剪辑、字幕整理、文案二次加工都要大量时间
+  \end{block}
+  
+  \column{0.48\textwidth}
+  \begin{block}{AI 时代}
+    \scriptsize
+    \textbf{二创变现速度上了一个数量级}
+    
+    \vspace{0.2cm}
+    大模型可以快速完成：
+    {\tiny
+    \begin{itemize}
+      \item 内容提炼、总结、重写
+      \item 改写表达风格、适配不同平台
+      \item 生成标题、封面文案、脚本大纲
+    \end{itemize}}
+  \end{block}
+  
+  \vspace{0.2cm}
+  \begin{block}{个人观点}
+    \scriptsize
+    \textbf{真正有观点的人不一定是"原始内容生产者"}
+    
+    \vspace{0.2cm}
+    AI 让我们有机会把"挖掘、整理、再创造"的能力迅速商业化
+    
+    \vspace{0.2cm}
+    这会成为一个新的风口，但：\\
+    \colorbf{不建议 FOMO（害怕错过）}\\
+    更重要的是：找到与你专业相关的、自己真正需要的场景
+  \end{block}
+  \end{columns}
+\end{frame}
+
+% ============ 第四部分：进阶话题与个人知识管理 ============
+% Slide 13: 个人知识库与AI
+\begin{frame}{个人知识库与 AI：把你喜欢的博主变成"你的私人工具"}
+  \begin{columns}[T]
+  \column{0.48\textwidth}
+  \begin{block}{行为习惯与场景差异}
+    \scriptsize
+    \textbf{你为什么喜欢听播客？}
+    {\tiny
+    \begin{itemize}
+      \item 跑步时
+      \item 做家务时
+      \item 躺着不想碰电脑时
+      \item 但又不想浪费学习时间
+    \end{itemize}}
+  \end{block}
+  
+  \vspace{0.2cm}
+  \begin{block}{用 AI 做"内容二次理解"}
+    \scriptsize
+    以一个你喜欢的博主为例：\\
+    \tiny（技术宅/情感博主/商业博主）
+    
+    \vspace{0.1cm}
+    \textbf{做法：}
+    {\tiny
+    \begin{enumerate}
+      \item 用 glasp.co 等工具抓取视频字幕
+      \item 把字幕作为语料上传到知识库
+      \item 让 AI：\\
+      - 总结 TA 的核心观点体系\\
+      - 提炼该博主在 A/B/C 主题上的常见立场与方法论
+    \end{enumerate}}
+  \end{block}
+  
+  \column{0.48\textwidth}
+  \begin{block}{展望}
+    \scriptsize
+    Gemini 3 Pro 已经支持：\\
+    "\colorbf{直接扔一个视频进去，按说话人分角色总结}"
+    
+    \vspace{0.2cm}
+    这是未来个人知识管理的重要方向
+  \end{block}
+  
+  \vspace{0.2cm}
+  \begin{block}{Google AI Studio \& NotebookLM}
+    \scriptsize
+    \textbf{个人知识管理神器}
+    
+    \vspace{0.2cm}
+    \textbf{Google AI Studio：}\\
+    基于上传语料生成播客式内容
+    
+    \vspace{0.2cm}
+    \textbf{NotebookLM：}\\
+    针对个人资料、论文、PDF、采访记录等\\
+    做深度理解、问答、总结、观点抽取
+  \end{block}
+  \end{columns}
+\end{frame}
+
+% Slide 14: 多模态创作
+\begin{frame}{多模态创作：从摄影到"AI 摄影大赛"}
+  \begin{columns}[T]
+  \column{0.48\textwidth}
+  \begin{block}{从照片到视频}
+    \scriptsize
+    \textbf{提议：}把"摄影大赛"升级成"AI 摄影大赛"
+    
+    \vspace{0.3cm}
+    \textbf{实际能力：}
+    {\tiny
+    \begin{itemize}
+      \item 给 AI 两张照片作为首帧和尾帧
+      \item 让它生成中间过渡，变成一段完整视频
+    \end{itemize}}
+  \end{block}
+  
+  \vspace{0.3cm}
+  \begin{alertblock}{启示}
+    \scriptsize
+    摄影不再只是"按快门"的技术，而是：
+    {\tiny
+    \begin{itemize}
+      \item 如何构思一个可以被 AI 延展的"视觉故事"
+      \item 创作的重心，从"怎么拍"，转移到\\
+      "怎么定义故事与风格约束"
+    \end{itemize}}
+  \end{alertblock}
+  
+  \column{0.48\textwidth}
+  \begin{block}{安全与风控：不做"白老鼠"}
+    \scriptsize
+    \textbf{代充的风险：}
+    {\tiny
+    \begin{itemize}
+      \item \textcolor{red}{风控封号：}第三方代充易触发风控
+      \item \textcolor{red}{验证码问题：}相当于给了对方你的账号"万能钥匙"
+      \item \textcolor{red}{海外黑钱风险：}部分"低价代充"本质是用黑卡/洗钱通道
+    \end{itemize}}
+    
+    \vspace{0.2cm}
+    \textbf{使用别人 API 的隐私问题：}
+    {\tiny
+    \begin{itemize}
+      \item 请求内容可能被服务方记录/训练
+      \item 一旦出现滥用，很难追责到源头
+    \end{itemize}}
+    
+    \vspace{0.2cm}
+    \textbf{安全实践小建议：}
+    {\tiny
+    \begin{itemize}
+      \item API Key/私钥不要直接贴在聊天框里
+      \item 更安全做法：使用环境变量\\
+      \texttt{export API\_KEY="xxx"}
+      \item 在代码或工具配置中引用变量
+    \end{itemize}}
+  \end{block}
+  
+  \vspace{0.2cm}
+  \begin{alertblock}{}
+    \scriptsize\centering
+    在 AI 工具大爆发的阶段，\textbf{安全意识要比"薅羊毛"更重要}
+  \end{alertblock}
+  \end{columns}
+\end{frame}
+
+% Slide 15: AI工作方式的迁移
+\begin{frame}{从"小米手机工作站"到"AI 工作站"}
+  \begin{columns}[T]
+  \column{0.48\textwidth}
+  \begin{block}{小米的例子}
+    \scriptsize
+    \textbf{雷军多次分享：}\\
+    自己用小米手机处理日程、沟通、文件、甚至控制智能工厂
+    
+    \vspace{0.2cm}
+    \textbf{目标：}\\
+    让用户"\colorbf{把一天所有事情都用小米手机完成}"
+  \end{block}
+  
+  \vspace{0.2cm}
+  \begin{block}{斯坦福 CS146S}
+    \scriptsize
+    \textbf{课程名：}《The Modern Software Developer》
+    
+    \vspace{0.2cm}
+    \textbf{课程主旨：}\\
+    教你在\textbf{几乎不手写代码}的前提下完成开发
+    
+    \vspace{0.2cm}
+    把精力放在：
+    {\tiny
+    \begin{itemize}
+      \item 需求定义
+      \item 架构设计
+      \item 质量与安全边界
+    \end{itemize}}
+  \end{block}
+  
+  \column{0.48\textwidth}
+  \begin{block}{我的个人原则}
+    \scriptsize
+    \textbf{把工作迁移到和 AI 的对话里}
+    
+    \vspace{0.2cm}
+    我的设想：\\
+    就像小米要把"所有事"做进手机\\
+    我希望把"\colorbf{一天的大部分工作}"\\
+    迁移到和 AI 的对话里完成
+    
+    \vspace{0.2cm}
+    \textbf{实际做法：}
+    {\tiny
+    \begin{itemize}
+      \item 能脚本化的，尽量脚本化
+      \item 能交给 Agent 的，就别自己点点点
+      \item 人只做三件事：\\
+      \colorbf{设目标、定边界、做判断}
+    \end{itemize}}
+  \end{block}
+  
+  \vspace{0.2cm}
+  \begin{alertblock}{不要 FOMO，只要"取你所需"}
+    \scriptsize
+    AI 场景远比我们当前能想到的要多\\
+    但每个人的节奏与职业阶段不同：
+    {\tiny
+    \begin{itemize}
+      \item 不必追逐所有新工具、新模型
+      \item 挑与你现阶段最契合的 1\textasciitilde 2 个场景深挖
+    \end{itemize}}
+    这既是我现在的策略，也是今天这场分享的底层态度
+  \end{alertblock}
+  \end{columns}
+\end{frame}
+
+% ============ 第五部分：企业场景与落地 ============
+% Slide 16: 核心业务场景 - 从Dev到Ops的全链路Agent
+\begin{frame}{核心业务场景：从 Dev 到 Ops 的全链路 Agent}
+  {\small
+  \begin{columns}[T]
+  \column{0.48\textwidth}
+  \begin{block}{软件研发 (DevAgent)}
+    {\footnotesize
+    \textbf{自动需求理解：}\\
+    读取 PRD → 自动生成架构图、DB 设计、API 定义草案
+    
+    \vspace{0.1cm}
+    \textbf{代码生成与重构：}\\
+    "生成登录模块" → 一次性产出前端+后端+单测\\
+    遗留代码自动注释、重构建议
+    
+    \vspace{0.1cm}
+    \textbf{自动化测试：}\\
+    变更检测 → 生成测试用例 → 自动跑用例 → 简单 Bug 自动修复}
+  \end{block}
+  
+  \vspace{0.2cm}
+  \begin{block}{智能运维 (AIOps Agent)}
+    {\footnotesize
+    \textbf{故障自愈：}\\
+    报警 → 日志分析 → 根因定位 → 执行修复（重启/回滚/扩容）
+    
+    \vspace{0.1cm}
+    \textbf{资源优化：}\\
+    云资源分析 → 提供降本建议与阈值调整方案
+    
+    \vspace{0.1cm}
+    \textbf{安全巡检：}\\
+    自动漏洞扫描、攻击模拟、报告输出}
+  \end{block}
+  
+  \column{0.48\textwidth}
+  \begin{block}{数据分析与 BI (Data Agent)}
+    {\footnotesize
+    \textbf{Text-to-SQL：}\\
+    用自然语言提问 → 自动生成 SQL → 查库 → 绘图展示
+    
+    \vspace{0.1cm}
+    \textbf{趋势洞察：}\\
+    自动生成周报/月报\\
+    做异常检测与预警}
+  \end{block}
+  
+  \vspace{0.2cm}
+  \begin{block}{项目管理 (PM Agent)}
+    {\footnotesize
+    \textbf{会议自动化：}\\
+    实时记录 → 生成纪要 → 提炼 Action → 自动创建任务
+    
+    \vspace{0.1cm}
+    \textbf{知识库问答：}\\
+    整合内部文档/Wiki → 面向员工的问答助手}
+  \end{block}
+  \end{columns}}
+  
+  \vspace{0.3cm}
+  \begin{alertblock}{核心价值}
+    \scriptsize\centering
+    从\textbf{需求}到\textbf{交付}，从\textbf{开发}到\textbf{运维}，\\
+    AI Agent 实现\colorbf{全链路自动化与智能化}
+  \end{alertblock}
+\end{frame}
+
+% Slide 17: 技术栈选型与落地挑战
+\begin{frame}{技术栈选型与落地挑战}
+  \begin{columns}[T]
+  \column{0.48\textwidth}
+  \begin{block}{技术栈选型}
+    \scriptsize
+    \textbf{框架：}
+    \begin{itemize}
+      \tiny
+      \item LangChain / LangGraph
+      \item AutoGen / MetaGPT
+      \item CrewAI
+    \end{itemize}
+    
+    \vspace{0.1cm}
+    \textbf{模型：}
+    \begin{itemize}
+      \tiny
+      \item GPT-4o、GPT-5.1
+      \item Claude 3.5 Sonnet
+      \item Llama 3（本地/私有化）
+    \end{itemize}
+    
+    \vspace{0.1cm}
+    \textbf{向量库：}
+    \begin{itemize}
+      \tiny
+      \item Pinecone / Milvus / Chroma
+    \end{itemize}
+    
+    \vspace{0.1cm}
+    \textbf{平台化：}
+    \begin{itemize}
+      \tiny
+      \item 扣子（Coze）、Dify
+    \end{itemize}
+  \end{block}
+  
+  \column{0.48\textwidth}
+  \begin{block}{落地挑战与策略}
+    \scriptsize
+    \textbf{降低幻觉：}
+    \begin{itemize}
+      \tiny
+      \item RAG（检索增强生成）
+      \item CoT（链式思维）
+    \end{itemize}
+    
+    \vspace{0.1cm}
+    \textbf{数据安全：}
+    \begin{itemize}
+      \tiny
+      \item 私有化部署
+      \item 数据脱敏
+      \item 权限隔离
+    \end{itemize}
+    
+    \vspace{0.1cm}
+    \textbf{成本与循环控制：}
+    \begin{itemize}
+      \tiny
+      \item 设置迭代步数上限
+      \item 实时监控 token 与调用成本
+    \end{itemize}
+  \end{block}
+  \end{columns}
+  
+  \vspace{0.3cm}
+  \begin{table}
+  \centering
+  \scriptsize
+  \begin{tabular}{lccc}
+  \toprule
+  \textbf{挑战} & \textbf{影响} & \textbf{解决方案} & \textbf{优先级} \\
+  \midrule
+  幻觉问题 & 高 & RAG + CoT & \cellcolor{red!20}高 \\
+  数据安全 & 高 & 私有化部署 & \cellcolor{red!20}高 \\
+  成本控制 & 中 & 监控 + 限制 & \cellcolor{yellow!30}中 \\
+  \bottomrule
+  \end{tabular}
+  \end{table}
+\end{frame}
+
+% ============ 第六部分：未来趋势与行动呼吁 ============
+% Slide 18: 未来趋势 - 从一个Agent到Agent团队
+\begin{frame}{未来趋势：从"一个 Agent"到"Agent 团队"}
+  \begin{columns}[T]
+  \column{0.48\textwidth}
+  \begin{block}{多 Agent 协作}
+    \scriptsize
+    \textbf{Multi-Agent System：}\\
+    PM Agent / Dev Agent / QA Agent 协同完成项目
+    
+    \vspace{0.3cm}
+    \begin{center}
+    \begin{tikzpicture}[
+      agent/.style={circle, draw=xOrange, fill=xOrange!20, thick, minimum size=1.2cm, font=\tiny\bfseries},
+      arrow/.style={<->, >=stealth, thick, xDarkBlue}
+    ]
+      \node[agent] (pm) at (0,0) {PM\\Agent};
+      \node[agent] (dev) at (2,0) {Dev\\Agent};
+      \node[agent] (qa) at (1,-1.5) {QA\\Agent};
+      
+      \draw[arrow] (pm) -- (dev);
+      \draw[arrow] (dev) -- (qa);
+      \draw[arrow] (qa) -- (pm);
+    \end{tikzpicture}
+    \end{center}
+  \end{block}
+  
+  \vspace{0.2cm}
+  \begin{block}{岗位进化}
+    \scriptsize
+    \textbf{程序员 → Agent Architect}
+    
+    \vspace{0.2cm}
+    关注点从"\colorbf{写代码}"\\
+    → "\colorbf{设计 Agent 体系与工作流}"
+  \end{block}
+  
+  \column{0.48\textwidth}
+  \begin{block}{企业数据护城河}
+    \scriptsize
+    \textbf{业务数据 + 私有 Agent}\\
+    = \colorbf{企业专属竞争优势}
+    
+    \vspace{0.3cm}
+    谁拥有更丰富的私有数据和更懂业务的 Agent，\\
+    谁就更有竞争力
+  \end{block}
+  
+  \vspace{0.2cm}
+  \begin{alertblock}{Claude 进阶玩法}
+    \scriptsize
+    \textbf{常用指令：}\\
+    \texttt{/ls, /edit, /commit, /run}
+    
+    \vspace{0.2cm}
+    \textbf{危险模式：}\\
+    \texttt{claude --dangerously-skip-permissions}\\
+    \tiny（类似"自动确认所有操作"）
+    
+    \vspace{0.2cm}
+    \textbf{CLAUDE.md：}\\
+    \tiny 项目级使用说明 + 角色设定\\
+    写明：项目背景、代码结构、习惯/风格偏好、安全边界
+    
+    \vspace{0.2cm}
+    \textbf{/subagent \& Skills：}\\
+    \tiny 让"一个大模型"变成"多个小专长智能体+工具系统"的协作网络
+  \end{alertblock}
+  \end{columns}
+\end{frame}
+
+% Slide 19: 总结与行动呼吁
+\begin{frame}{总结与行动呼吁}
+  \begin{block}{核心结论}
+    \large
+    \centering
+    AI Agent 不是来\textbf{取代人}，而是：\\
+    \vspace{0.2cm}
+    \colorbf{放大人的认知与执行能力}的\\
+    "外接大脑 + 外接手脚"
+  \end{block}
+  
+  \vspace{0.5cm}
+  \begin{columns}[T]
+  \column{0.48\textwidth}
+  \textbf{建议的行动路径}
+  \vspace{0.2cm}
+  \begin{itemize}
+    \scriptsize
+    \item \textbf{团队层面：}\\
+    先从 AI 编程工具入手\\
+    （Copilot、Claude Code、国产 Coding 模型等）
+    \vspace{0.2cm}
+    \item \textbf{业务层面：}\\
+    选择一个\colorbf{小而真实}的场景，\\
+    快速落地一个 Agent
+    \vspace{0.2cm}
+    \item \textbf{知识层面：}\\
+    搭建企业内部 AI 知识库与规范\\
+    （包含 CLAUDE.md/Prompt 模板/安全指南）
+  \end{itemize}
+  
+  \column{0.48\textwidth}
+  \textbf{个人层面}
+  \vspace{0.2cm}
+  \begin{alertblock}{}
+    \scriptsize
+    \textbf{不必追所有热点}
+    
+    \vspace{0.2cm}
+    找到能真正提高你\colorbf{日常工作效率}的那几个场景
+    
+    \vspace{0.2cm}
+    然后，\textbf{用好 AI}，\\
+    而不是被 AI 的新名词牵着走
+  \end{alertblock}
+  
+  \vspace{0.3cm}
+  \begin{block}{}
+    \scriptsize\centering
+    \textbf{我的策略：}\\
+    把一天的大部分工作\\
+    迁移到和 AI 的对话里完成\\
+    \vspace{0.1cm}
+    人只做：\colorbf{设目标、定边界、做判断}
+  \end{block}
+  \end{columns}
+  
+  \vspace{0.5cm}
+  \begin{center}
+  \large\textit{让我们一起拥抱智能时代！}
+  \end{center}
+\end{frame}
+
+% Slide 20: Q&A
+\begin{frame}
+  \centering
+  \vspace{1cm}
+  \Huge \colorbf{Q \& A}
+  \vspace{1cm}
+  
+  \Large
+  感谢聆听！
+  
+  \vspace{0.5cm}
+  \normalsize
+  \begin{tikzpicture}
+    \node[draw=xOrange, fill=xOrange!10, rounded corners, thick, minimum width=8cm, minimum height=1.5cm, font=\small] {
+      \begin{tabular}{c}
+        探索更多内容，可在 Q\&A 中展开：\\
+        \tiny Claude/Gemini 进阶玩法 | 个人知识库搭建 | 多模态创作
+      \end{tabular}
+    };
+  \end{tikzpicture}
+\end{frame}
+\end{document}

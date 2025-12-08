@@ -1,0 +1,26 @@
+# LaTeX auxiliary files
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+*.xdv
+*.nav
+*.snm
+*.vrb
+*.bbl
+*.blg
+
+# Backup files
+*.backup
+*.bak
+*.bak2
+*.bak3
+
+# Python scripts (temporary)
+fix_lists.py
+
+# macOS
+.DS_Store
