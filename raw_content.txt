@@ -1,0 +1,336 @@
+Sharing session
+
+注意：涉及到的.png图片请不要忽略，这些图片都在./pictures/目录下, 请将图片按照合理的排版，插入LaTeX代码中。
+
+第一部分：开篇与背景（The “Why” & “What”）
+1. 封面页
+* 主标题： 智能进化：AI Agent 重塑 IT 生产力
+* 副标题： 从 Copilot 到 Autopilot，开启企业提效新范式
+* 演讲者｜部门｜日期
+2. 行业现状：IT 生产模式的“内卷”困境
+* 痛点：
+    * 需求堆积，交付周期冗长
+    * 大量重复性工作（CRUD、告警处理）消耗人力
+    * 跨部门沟通成本高，信息孤岛明显
+    * 技术栈快速迭代，学习成本上升
+* 核心问题： 如何从“堆人力”转向“堆算力 + 智能”的新生产方式？
+3. 概念重构：AI Agent 的本质
+* 定义： 具备感知（Perception）、规划（Planning）、记忆（Memory）与工具使用（Tool Use）能力的自主智能体
+* 三者对比：
+    * LLM： 会思考但不执行
+    * Copilot： 人主导、AI 辅助
+    * AI Agent： 目标驱动，自主拆解任务、调用工具并执行闭环
+* 核心架构图： LLM + Planning + Memory + Tools 的标准 Agent Pipeline
+
+————
+
+最开始使用AI，主要是问答机器人，然后是在poe设置语料库，设定特定的垂直领域机器人。
+
+下一阶段，AI+辅助工具（需要经验）
+
+比如我知道markdown支持mermaid，而mermaid就是一种经验，经验+AI结合我可以做半自动化的事情，提高我的工作效率。
+
+AI + markdown实现轻量级画图
+
+方法：用.md文本编辑器，输入```mermaid敲回车， 会进入编码模式，然后可以copy  paste AI生成的代码，即可完成图片 自动显示。
+
+例子1: 项目进度甘特图 gantt-mermaid.png
+
+ 例子2: 应用系统时序图 time-sequence.png
+
+更多的例子：
+
+mermaid-example1.png
+mermaid-example2.png
+mermaid-example3.png
+mermaid-example4.png
+
+—————
+当然在我写代码的时候，我可以把error交给AI问答机器人处理。
+学程序语言再也不看用户手册了，debug再也不看stackoverflow了。
+
+但是他们未曾离开，只是换了一种形式，在AI的知识库中，为我们甄选，最好的
+
+但是引出疑问，AI对于普通开发者来说仅仅局限于此吗？肯定不是，
+问答机器人不等于AI agent！
+—————
+
+我使用AI agent的契机，10月份加入，我调试同事已经build的代码，还在通过copy and paste的方式问GPT 5.1，跑通代码，然后同事看到我用vscode，让我点开聊天窗口，设置Agent 模式，我打开了新世界的大门….
+
+但是很快也遇到了瓶颈
+1. 每次都需要每次点击approve具体操作，让我觉得很低效。
+2. 我不能开多个窗口，同时对一个项目执行多个操作。
+
+我接触到了claude code，在命令行里面直接和项目进行交互，打开了新世界的大门，对于terminal并行完成任务提供沃土
+
+由此引出了SWE AI Agent
+
+—————
+主流SWE AI Agent: Claude code, Gemini cli, copilot cli, codex.
+
+进入AI Agent控制台的截图：
+gemini-cli.png
+claude-cli.png
+
+可以选择的模型：
+claude-models.png
+copilot-models.ong
+
+他们的安装方法都很简单，接近一键安装。
+gemini cli为例：
+macOS/Linux系统直接输入 brew install gemini-cli
+
+
+
+缺点是：中国大陆和香港受到地区的限制，claude code 无法使用，codex无法使用，gemini无法使用，copilot可以使用。
+————
+
+Google的限制很严格
+
+国产IDE TRAE国际版也可以接入Gemini 2.5 Pro，但是排队特别久。
+
+Gemini  cli但是无法使用，我在尝试了VPN全局代理，仍然被严格的限制措施限制了登陆。
+
+我的方案:  在https://console.cloud.google.com/注册账号，获取project ID，
+export GOOGLE_CLOUD_PROJECT=“YOUR_PROJECT_ID_XXX” >> ~/.bashrc
+source ~/.bashrc
+然后你的gemini cli 可以使用你的gmail邮箱登陆，然后进行使用，但是目前仅能使用Gemini 2.5 Pro
+
+可以尝试/settings 命令设置Preview Features为True, 则升级为Gemini 3 Pro （But I failed to do it…）
+
+———
+
+claude code 也无法使用，但是claude code 的Agent框架可以接入国产模型。
+
+截至今日，主流观点认为编码能力最强的国产coding模型是：
+字节跳动 Doubao-seed-code (仅次于Claude sonnet 4.5)， 智谱 GLM 4.6 
+
+以豆包为例子，我们可以在火山引擎(字节跳动)购买方舟Coding Plan，然后获取API Key,
+然后我们可以直接在下载完成claude code 之后，直接做如下配置，之后方可使用。
+
+vim ~/.claude/settings.json
+
+{
+    "env": {
+        "ANTHROPIC_AUTH_TOKEN": "<ARK_API_KEY>",
+        "ANTHROPIC_BASE_URL": "https://ark.cn-beijing.volces.com/api/coding",
+        "ANTHROPIC_MODEL": "<Model>"
+    }
+}
+
+————
+
+不过问题来了，如果我不仅想用claude code作为AI agent，还是更想用claude sonnet 4.5，怎么办呢？其实copilot cli可以接入claude code，这是我目前唯一不需要魔法可以使用claude code作为terminal agent的情形！
+
+Copilot cli 不需要魔法即可使用！
+
+copilot是open AI 和microsoft共同打造的，但是copilot cli不仅支持GPT系列模型(GPT 5.1), 还可以使用claude sonnet 4.5!
+
+
+————
+Codex cli我没有成功… 不过可以被doubao支持
+
+————
+我的案例经验
+
+案例1: AI写长文report
+
+痛点1: 从已有白皮书基础迭代，AI对PDF理解有限并且消耗Token，
+痛点2: 白皮书同时要发布英文，繁体中文、简体中文，AI做长文本翻译很困难，特别是十万字的书本
+痛点3: AI很难对于长文本做排版。
+痛点4: 一旦我需要更新其中一个版本，我需要同时更新另外两个版本，非常麻烦。
+
+我的解决方案：
+
+我目前需要根据已有的文本做逐个章节的润色和提升，
+
+1.  一个使用常识：AI处理文本比处理PDF更好，不管是理解能力还是token消耗方面！AI阅读文本，前者大约能达到后者仅1/2 -> 1/20的token （根据估算）, 所以我先将PDF转换成文本，如.md
+2. AI在原始文本上覆盖的效果比AI根据源文件逐段在目标文件重新写效果更好！后者容易面临中断。所以建议先保留一份备份原文本，然后再使用心得文本，直接让AI进行阅读理解然后覆盖更新原来内容。
+3. 我让AI Agent直接操作LaTeX，解决了排版困难，还有手动使用LaTeX的debug的困难。
+4. 我直接用大模型API为我做长文翻译，并且把流程脚本化，然后使用GitHub actions构建工作流，实现了我只需要更新英文版，工作流自动帮我做完成翻译，LaTeX编译，网站部署发布流程。
+
+以上过程，完全可以不需要自己写一行代码。
+
+我的思考1
+
+对于AI agent来说，
+对代码形式的内容有更好的理解和处理能力，而我们能做的，尽可能给AI降低理解门槛。
+一、文本文件(.md/.tex) vs PDF
+* 文本文件更容易、也更便宜让模型理解。
+* 纯文本没有格式干扰，也不需要 OCR，因此结构更清晰、解析更准确。
+* PDF（尤其是扫描版）可能包含识别误差，影响理解效果。
+二、在 Poe.com 上传 PDF 的效果
+* 如果 PDF 是文本型，效果还不错；扫描版依赖 OCR，准确度不稳定。
+* 具体效果取决于你用的是哪种模型。Claude 在长文档方面表现很好。
+* 若能把 PDF 转成文本再上传，整体质量会更好。
+三、AI 的记忆模式
+* 上下文记忆：仅在当前对话中有效，结束后清空。
+* 训练记忆：模型训练时学到的知识，是固定的，不会因对话更新。
+* 没有长期个人记忆，也不会记住过去的对话。
+
+
+我的思考2
+AI对于能够脚本程序化操作的事情能够更好的执行，
+比如我写word，这件事情很难脚本化操作，
+但是我写latex，不论是内容编写，debug，排版布局，还是pdf编译，都可以用机器指令执行，那么就是一个适合AI agent的场景。
+所以为了用好AI，我们去思考能不能把一件事情脚本化？
+
+以此类推，比如我做PPT能不能让这件事情脚本化？其实本次分享的PPT就是LaTeX完成的，整个制作，排版，也是AI agent帮我完成，而我更多的精力花在了内容的准备上，而不用太多时间花费在排版，调整格式上。
+
+
+我的思考3
+
+架构思维和domain knowledge，在AI时代更加重要。
+
+工程实现角度：需要阅读大量的用户手册，还有实战经验，比如在写workflow的时候，yaml的编写其实并不算容易，甚我只是对CI/CD的概念有所了解，所以我凭着感觉完成了这个任务。
+
+如果一个外行人用AI写网站应用，外行人会提出需求，但是软件开发从业者会更理性的划分成不同sub task，前端、后端、测试、运维，而这些概念，对于外行人其实是没有的。
+
+比如设计师可能知道什么叫“毛玻璃特效”
+PPT设计师知道什么叫“分镜”
+
+所以其实说AI取代xx职业，其实我很不认同，上面的例子页很显然，domain knolwdge可以帮助你更好的用AI。
+
+===============
+
+衍生出来一个小小技巧“套娃”
+
+我让ai agent帮我写一个网页：请帮我写一个网页加入工业风金属元素设计高端风格 ,然后喂给AI。
+
+打包“请帮我写一个网页加入工业风金属元素设计高端风格”给任何一个AI，告诉他，我是外行，但是请你作为一个硅谷科技公司的尖端的UI设计师和前端开发经验，帮我强化我的prompt，
+
+=》
+“请为我设计一个具备高端工业风视觉语言的网页界面。整体风格需体现现代科技品牌调性，采用冷调金属材质体系，包括拉丝金属纹理（brushed metal texture）、磨砂金属表面（matte anodized finish）、微光折射（subtle specular highlights）与低饱和度冷灰色系（desaturated cool greys）。界面结构需以栅格系统（12-column grid system）为基础，结合高密度信息布局（dense layout rhythm）与留白控制（negative space discipline），呈现沉稳且克制的工业美学。
+组件设计需体现模块化组件库（modular component system）特性，包括悬浮式卡片（elevated cards with soft shadow falloff）、金属质感 CTA 按钮（metallic CTA with micro-interactions）、可变字体（variable font）以及具有科技感的线框图标（monoline iconography）。请在交互上加入微动效（micro‑animations）、流畅缓动曲线（cubic‑bezier easing）、动态光感反馈（reactive light feedback）与 hover 态位移（sub‑pixel hover translation），强化高级科技感。
+请同时提供：
+1. 设计 rationale（视觉语言、色彩体系、光影层级、动效逻辑）
+2. 信息架构建议（information hierarchy）
+3. 可用于真实开发的 HTML/CSS 结构建议（semantic structure + tokenized design system）
+整体产出需达到硅谷顶级科技公司（如 Apple / Tesla / Anthropic / OpenAI）视觉规范级别的工业风科技质感。”
+
+
+然后一个简单的套娃操作，完全省力气，但是给你提供了绝对满意的惊喜。
+
+————————
+
+你很喜欢一个博主，也可能是网红，可能是技术宅，可能是恋爱高手，你觉得他的很多观点，特别好，但是他发的视频特别多，你没时间看，你可以生成一个他的智能体。
+
+http://glasp.co/ 帮你一键粘贴copy 字幕，然后你可以把这些放到你的语料库里。进行分析学习，提取观点。
+
+例子图片： glasp-subtitle.png
+
+不过其实Gemini 2.5 pro 和GPT5.1都不支持的扔一个视频让AI分析，目前只有Gemini 3 pro做到了！他还可以根据不同的人的讲话，总结不同的人的发言和观点。
+
+
+——————
+
+我发现一个现象：优秀的创造者不一定是流量和光环所向的地方，二次创作慎之会更成功。
+小红书上叫这些人二创作者，在别人的基础上二次创作，然后获得了几万的流量。
+
+二创赢的流量是常见的，比如小米SU7在模仿保时捷，虽然是模仿，但是老百姓就是喜欢，二创就似乎没那么多责备的声音了。
+
+但是没有AI，二创依然是面临很多困难的。
+
+不过在AI时代，二创变现的速度提高了一个数量级！很多困难都迎刃而解，所以这又是一个风口。
+
+
+————————
+
+***请帮我补充这部分***
+
+其他技术细节：
+
+Claude 常用指令，举一反三。 最重要claude —dangerously-skip-permissions 喝一杯咖啡的时间，帮你完成了代码从架构设计到部署测试
+
+有哪些指令？
+
+上下文记忆要怎么把握？
+
+CLAUDE.md怎么写，有什么用，对应其他Gemini是什么，是不是能节约token。
+
+什么是/subagent, /commands/ 有什么claude skills
+
+Mcp 扩展了更多场景
+————————————
+进阶话题： 个人知识库
+
+NotebookLMNotebookLM是一个知识管理的神器，可以根据上传的语料生成一个播客/报告/幻灯片，语料可以是文字，也可以是视频链接。
+
+使用技巧：生成的幻灯片给予Nano Banana，有很好的审美，但是是PDF，需要转换成.pptx格式才能进一步编辑，可以使用WPS进行转换，效果比较好。
+
+我特别喜欢播客功能，为什么你喜欢听播客，可能你在跑步，可能你在做家务，可能你就是躺着，不想碰电脑，但是不耽误你获取新知识。对于创作自媒体，可以极大提高生产力
+
+
+——————————
+摄影大赛，建议更名为AI摄影大赛，
+
+给两张照片作为首帧和尾帧，就可以创作出来个视频
+
+
+——————————
+安全问题：
+
+别人帮我代充的风险：
+风控封号，别人要我的验证码，相当于有了我的google帐户全县，我的隐私信息如银行卡号安全，
+
+我用别人的API 是不是安全，有风控机制，容易被封号，然后难以追责，有安全隐私问题吗？
+
+使用router，你的内容你是不是愿意给别人看。
+
+代充用海外黑钱冲，涉及洗钱。
+
+私钥、API key 不要直接用聊天栏给AI，而是用export全局变量形式更安全。
+—————
+
+如何用好AI心路历程，我的个人原则。
+
+小米例子雷军本人在多个场合展示和提及，他用小米手机处理日程、沟通、文件、甚至控制智能工厂，将手机当作移动的“工作站”。追求让用户“把一天所有的事情都用小米手机完成”
+
+=> 开发场景。斯坦福大学新开设的课程《现代软件开发者》（CS146S: The Modern Software Developer）, 主讲 Mihail Eric 告诉学生们，课程的主旨就是教你在不编写一行代码的情况下进行编程开发
+
+=> 工作：迁移到AI场景，把一天所有的工作都通过与AI对话来完成。
+
+
+
+=============
+
+
+
+更多场景与应用（The “How”）
+4. 软件研发（DevAgent）
+* 自动需求理解： 读取 PRD → 生成架构图、DB 设计、API 定义
+* 代码生成与重构：
+    * 输入“生成登录模块”→ 自动产出全栈代码 + 单测
+    * 遗留代码自动注释、重构建议
+* 自动化测试： 变更检测 → 生成测试用例 → 自动回归与简单 Bug 修复
+5. 智能运维（AIOps Agent）
+* 故障自愈： 报警 → 日志分析 → 根因定位 → 执行修复（重启/回滚/扩容）
+* 资源优化： 云资源分析 → 提供降本建议
+* 安全巡检： 自动漏洞扫描 + 攻击模拟 + 报告输出
+6. 数据分析与 BI（Data Agent）
+* Text-to-SQL： 自然语言查询 → 自动查库 → 图表展示
+* 趋势洞察： 自动生成周报/月报 + 异常检测与预警
+7. 项目管理（PM Agent）
+* 会议自动化： 生成纪要 → 提炼 Action → 自动创建任务
+* 知识库问答： 整合内部文档 → 提供精准支持
+
+
+============
+
+其他更多场景，待探索
+
+但是我的建议，不要FOMO，要取你所需。
+
+我的体会：
+
+AI快速发展的时代，不一定西方的月亮比较圆，国产模型现在相当有竞争力，便宜不一定效果差。
+
+世界上最大的两家crypto交易所也是华人创办的：binance的cz赵长鹏，和star Xu的OKX
+
+在我的实际感受中，可灵AI生成的视频任务，生成的中文人物对话场景明显优于Veo-3
+
+Doubao-seed-code比copilot内置的级别低于claude sonnet 4.5的模型，比如grok fast 1, gpt 5 mini 明显更优，和主观体验和SWE benchmark差不多。
+
+——————————
+
+加入一些总结和升华

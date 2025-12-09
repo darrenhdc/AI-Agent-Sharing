@@ -1,42 +1,21 @@
-\documentclass[10pt,aspectratio=169]{beamer}
+\documentclass[aspectratio=169]{beamer}
 
-% Theme and colors
-\mode<presentation>{
-  \usetheme{EuXFEL}
-  \usecolortheme{EuXFEL}
-}
-
-% Packages
-\usepackage{hyperref}
-\usepackage{amsmath,amssymb}
+\usepackage[UTF8]{ctex}
 \usepackage{graphicx}
-\usepackage{helvet}
-\usepackage[T1]{fontenc}
-\usepackage[UTF8, fontset=none]{ctex}
-\setCJKmainfont[BoldFont=STHeiti, ItalicFont=STKaiti]{STSong}
-\setCJKsansfont{STHeiti}
-\setCJKmonofont{STFangsong}
-\xeCJKsetup{CJKmath=true, PlainEquation=true}
-\usepackage{tikz}
-\usetikzlibrary{shapes, arrows, calc, positioning, decorations.pathreplacing, shadows, backgrounds, fit, decorations.pathmorphing}
-\usepackage{booktabs}
-\usepackage{colortbl}
+\usepackage{hyperref}
 \usepackage{xcolor}
-\usepackage{multirow}
-\usepackage{array}
 \usepackage{listings}
 
-\renewcommand{\familydefault}{\sfdefault}
-\renewcommand\mathfamilydefault{}
-\newcommand{\colorbf}[1]{{\color{xOrange}\textbf{#1}}}
-
-\setbeamersize{text margin left=.06\pdfpagewidth,text margin right=.06\pdfpagewidth}
-\graphicspath{{./pictures/}}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  urlcolor=blue
+}
 
 \title{智能进化：AI Agent 重塑 IT 生产力}
 \subtitle{从 Copilot 到 Autopilot，开启企业提效新范式}
-\author{Darren Cui}
-\institute{HKHPC}
+\author{演讲者姓名}
+\institute{部门名称}
 \date{\today}
 
 \begin{document}
@@ -86,7 +65,7 @@
 % ===================== 第二部分：轻量自动化 & Mermaid =====================
 \section{从问答到轻量自动化：AI + 工具链}
 
-\begin{frame}[fragile]{AI + Markdown：轻量级画图思路}
+\begin{frame}{AI + Markdown：轻量级画图思路}
   \begin{itemize}
     \item 结合经验与 AI：知道 Markdown 支持 \texttt{mermaid}，就能把“画图”脚本化。
     \item 典型工作流：
@@ -103,13 +82,13 @@
   \begin{columns}[T]
     \column{0.5\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{gantt-mermaid.png}\\[4pt]
-    \small 项目进度甘特图 (gantt-mermaid.png)
+    \includegraphics[width=\textwidth]{./pictures/gantt-mermaid.png}\\[4pt]
+    \small 项目进度甘特图\\(gantt-mermaid.png)
 
     \column{0.5\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{time-sequence.png}\\[4pt]
-    \small 应用系统时序图 (time-sequence.png)
+    \includegraphics[width=\textwidth]{./pictures/time-sequence.png}\\[4pt]
+    \small 应用系统时序图\\(time-sequence.png)
   \end{columns}
 \end{frame}
 
@@ -117,23 +96,23 @@
   \begin{columns}[T]
     \column{0.33\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{mermaid-example1.png}\\[4pt]
+    \includegraphics[width=\textwidth]{./pictures/mermaid-example1.png}\\[4pt]
     \small mermaid-example1.png
 
     \column{0.33\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{mermaid-example2.png}\\[4pt]
+    \includegraphics[width=\textwidth]{./pictures/mermaid-example2.png}\\[4pt]
     \small mermaid-example2.png
 
     \column{0.33\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{mermaid-example3.png}\\[4pt]
+    \includegraphics[width=\textwidth]{./pictures/mermaid-example3.png}\\[4pt]
     \small mermaid-example3.png
   \end{columns}
 
   \vspace{0.5em}
   \centering
-  \includegraphics[width=0.33\textwidth]{mermaid-example4.png}\\[4pt]
+  \includegraphics[width=0.33\textwidth]{./pictures/mermaid-example4.png}\\[4pt]
   \small mermaid-example4.png
 \end{frame}
 
@@ -178,13 +157,13 @@
   \begin{columns}[T]
     \column{0.5\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{gemini-cli.png}\\[4pt]
-    \small Gemini CLI 终端交互 (gemini-cli.png)
+    \includegraphics[width=\textwidth]{./pictures/gemini-cli.png}\\[4pt]
+    \small Gemini CLI 终端交互\\(gemini-cli.png)
 
     \column{0.5\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{claude-cli.png}\\[4pt]
-    \small Claude Code CLI 界面 (claude-cli.png)
+    \includegraphics[width=\textwidth]{./pictures/claude-cli.png}\\[4pt]
+    \small Claude Code CLI 界面\\(claude-cli.png)
   \end{columns}
 \end{frame}
 
@@ -192,13 +171,13 @@
   \begin{columns}[T]
     \column{0.5\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{claude-models.png}\\[4pt]
-    \small Claude 可选模型列表 (claude-models.png)
+    \includegraphics[width=\textwidth]{./pictures/claude-models.png}\\[4pt]
+    \small Claude 可选模型列表\\(claude-models.png)
 
     \column{0.5\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{copilot-models.png}\\[4pt]
-    \small Copilot 可用模型截图 (copilot-models.png)
+    \includegraphics[width=\textwidth]{./pictures/copilot-models.ong}\\[4pt]
+    \small Copilot 可用模型截图\\(copilot-models.ong)
   \end{columns}
 \end{frame}
 
@@ -217,7 +196,7 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Gemini CLI 的“曲线救国”方案}
+\begin{frame}{Gemini CLI 的“曲线救国”方案}
   \begin{itemize}
     \item 在 \url{https://console.cloud.google.com/} 注册 Google Cloud 账号，创建项目。
     \item 获取 Project ID，设置环境变量，例如：
@@ -226,7 +205,7 @@
         \item \verb|source ~/.bashrc|
       \end{itemize}
     \item 然后可以用 Gmail 账号登录 Gemini CLI，通常可使用 Gemini 2.5 Pro。
-    \item 可以尝试 \texttt{/settings} 命令打开 Preview Features，理论上可升级到 Gemini 3 Pro。
+    \item 可以尝试 \texttt{/settings} 命令打开 Preview Features，理论上可升级到 Gemini 3 Pro（实践中我没有成功……）。
   \end{itemize}
 \end{frame}
 
@@ -276,12 +255,12 @@ vim ~/.claude/settings.json
     \item 场景：基于既有白皮书迭代新版，同时要出英文、繁中、简中三种版本。
     \item 痛点 1：PDF 理解能力有限、Token 消耗高。
     \item 痛点 2：十万字级长文本翻译，AI 容易中断、风格不统一。
-    \item 痛点 3：LaTeX 排版 \& Debug 成本高，人工改格式很耗时。
+    \item 痛点 3：LaTeX 排版 & Debug 成本高，人工改格式很耗时。
     \item 痛点 4：一处内容更新，需要手动在三种语言版本中同步，非常繁琐。
   \end{itemize}
 \end{frame}
 
-\begin{frame}{尝试的解决方案：从 PDF 到自动发布}
+\begin{frame}{我的解决方案：从 PDF 到自动发布}
   \begin{itemize}
     \item 第一步：将 PDF 转为纯文本（如 \texttt{.md}），再喂给大模型：
       \begin{itemize}
@@ -297,25 +276,6 @@ vim ~/.claude/settings.json
         \item 自己几乎不需要手写代码即可完成。
       \end{itemize}
   \end{itemize}
-\end{frame}
-
-\begin{frame}{流程与成品示例}
-  \vspace*{-1em}
-  \begin{columns}[T]
-    \column{0.62\textwidth}
-    \centering
-    \includegraphics[width=\linewidth,height=0.82\textheight,keepaspectratio]{cicd-workflow.png}\\[3pt]
-    \small 多语言发布 + CI/CD 自动化流程 (cicd-workflow.png)
-
-    \column{0.38\textwidth}
-    \centering
-    \includegraphics[width=0.95\linewidth,height=0.32\textheight,keepaspectratio]{latex-book1.png}\\[3pt]
-    \small 白皮书源稿章节示例 
-
-    \vspace{0.5em}
-    \includegraphics[width=0.9\linewidth,height=0.20\textheight,keepaspectratio]{whitepaper-page.png}\\[3pt]
-    \small 白皮书排版成品页
-  \end{columns}
 \end{frame}
 
 \begin{frame}{思考一：给 AI “降维”——文本 vs PDF}
@@ -384,50 +344,29 @@ vim ~/.claude/settings.json
         \item 描述工业风视觉语言、材质（拉丝金属、磨砂金属、冷灰色系）。
         \item 说明栅格系统、信息架构、动效细节、HTML/CSS 结构建议。
       \end{itemize}
-    \item 视觉落地：AI 直接生成高保真网页 UI（见后续示例），已经可以生产可交付稿。
     \item 小结：一次简单的“套娃”，你就获得了接近 Apple/Tesla 级别的设计说明书。
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Prompt “套娃”：AI 网页示例（1/2）}
-  \centering
-  \includegraphics[width=0.9\textwidth,height=0.8\textheight,keepaspectratio]{webpage1.png}\\[4pt]
-  \small AI 生成网页 UI 示例 1 (webpage1.png)
-\end{frame}
-
-\begin{frame}{Prompt “套娃”：AI 网页示例（2/2）}
-  \centering
-  \includegraphics[width=0.9\textwidth,height=0.8\textheight,keepaspectratio]{webpage2.png}\\[4pt]
-  \small AI 生成网页 UI 示例 2 (webpage2.png)
-\end{frame}
-
 \begin{frame}{个人知识库：从博主到“专属智能体”}
-  \begin{columns}[T]
-    \column{0.55\textwidth}
-    \begin{itemize}
-      \item 场景：你很喜欢一个博主 / 技术宅 / 影评 / 投研分析，但他的视频太多、没时间刷完。
-      \item 做法：
-        \begin{itemize}
-          \item 用 \url{http://glasp.co/} 抓取视频字幕，一键复制文本。
-          \item 把这些字幕整理成语料库，交给大模型进行分析和问答。
-        \end{itemize}
-      \item 效果：
-        \begin{itemize}
-          \item 为某个博主“生成一个智能体”，可以随时询问他的观点与方法论。
-          \item \textbf{glasp-subtitle.png} 可作为实际操作界面示例截图。
-        \end{itemize}
-    \end{itemize}
+  \begin{itemize}
+    \item 场景：你很喜欢一个博主 / 技术宅 / 恋爱高手，但他的视频太多、没时间刷完。
+    \item 做法：
+      \begin{itemize}
+        \item 用 \url{http://glasp.co/} 抓取视频字幕，一键复制文本。
+        \item 把这些字幕整理成语料库，交给大模型进行分析和问答。
+      \end{itemize}
+    \item 效果：
+      \begin{itemize}
+        \item 为某个博主“生成一个智能体”，可以随时询问他的观点与方法论。
+        \item \textbf{glasp-subtitle.png} 可作为实际操作界面示例截图。
+      \end{itemize}
+  \end{itemize}
 
-    \column{0.45\textwidth}
-    \centering
-    \IfFileExists{pictures/glasp-logo.png}{%
-      \includegraphics[height=0.9cm]{pictures/glasp-logo.png}\\[2pt]
-      \small glasp-logo.png\\[4pt]
-    }{\textit{(待补充 pictures/glasp-logo.png)}}
-    \vspace{0.25em}
-    \includegraphics[width=\linewidth]{glasp-subtitle.png}\\[3pt]
-    \small glasp-subtitle.png
-  \end{columns}
+  \vspace{0.5em}
+  \centering
+  \includegraphics[width=0.6\textwidth]{./pictures/glasp-subtitle.png}\\[4pt]
+  \small glasp-subtitle.png
 \end{frame}
 
 \begin{frame}{NotebookLM：从语料到播客与幻灯片}
@@ -482,7 +421,11 @@ vim ~/.claude/settings.json
     \item 授权策略：
       \begin{itemize}
         \item 默认每次文件修改、命令执行前都会请求确认（approve）。
-        \item 可以使用类似 \textbf{\texttt{claude --dangerously-skip-permissions}} 之类的参数，在“完全信任”的仓库中自动执行命令。
+        \item 可以使用类似 \textbf{\texttt{claude --dangerously-skip-permissions}} 之类的参数，
+              在“完全信任”的仓库中自动执行命令：
+          \begin{itemize}
+            \item 例如：“喝一杯咖啡的时间”，让它从架构设计到部署测试跑完一整套流程。
+          \end{itemize}
         \item 建议：仅在熟悉且可随时回滚的项目中使用“dangerously”选项。
       \end{itemize}
   \end{itemize}
@@ -598,7 +541,7 @@ vim ~/.claude/settings.json
   \begin{itemize}
     \item 代充风险：
       \begin{itemize}
-        \item 别人帮你代充账号，往往需要验证码，相当于获得了你的 Google 账号“权限通行证”。
+        \item 别人帮你代充账号，往往需要验证码，相当于获得了你的 Google 账号“全县通行证”。
         \item 涉及银行卡、隐私信息，甚至存在海外黑钱、洗钱风险。
       \end{itemize}
     \item 使用别人的 API Key：
@@ -614,7 +557,7 @@ vim ~/.claude/settings.json
   \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{安全实践建议}
+\begin{frame}{安全实践建议}
   \begin{itemize}
     \item 不要在聊天窗口直接粘贴私钥、API Key、数据库密码。
     \item 建议用环境变量形式管理：
@@ -656,10 +599,14 @@ vim ~/.claude/settings.json
     \item 国产模型近两年进步巨大，性价比极高。
     \item 例子：
       \begin{itemize}
-        \item Doubao-seed-code 在编码任务上，主观体验接近 Grok fast 1 / GPT 5 mini。
+        \item Doubao-seed-code 在编码任务上，主观体验接近 Grok fast 1 / GPT 5 mini 这一档。
         \item 在某些中文视频生成场景，可灵 AI 生成的人物对话场景明显优于 Veo-3。
       \end{itemize}
-    \item 结论：\textbf{选适合场景 + 适合预算的组合}即可，无需盲目 FOMO 海外产品。
+    \item 加密货币领域：Binance（CZ 赵长鹏）、OKX（Star Xu）等世界级平台，均由华人创办。
+    \item 结论：
+      \begin{itemize}
+        \item 不必盲目 FOMO 海外产品，\textbf{选适合场景 + 适合预算的组合}即可。
+      \end{itemize}
   \end{itemize}
 \end{frame}
 
@@ -667,17 +614,18 @@ vim ~/.claude/settings.json
   \begin{itemize}
     \item \textbf{从 Copilot 到 Autopilot：}
       \begin{itemize}
-        \item 先让 AI 帮你“改写一段代码 / 一页文档”，再让它“改一个项目 / 一本书 / 一套工作流”。
+        \item 先让 AI 帮你“改写一段代码 / 一页文档”，再慢慢让它“改一个项目 / 一本书 / 一套工作流”。
       \end{itemize}
-    \item \textbf{接下来可以做的三件事：}
+    \item \textbf{下周就可以做的三件事：}
       \begin{itemize}
-        \item 选一个可脚本化的痛点任务，尝试交给 Agent 做闭环。
+        \item 选一个可脚本化的痛点任务（文档、脚本或报告），尝试交给 Agent 做闭环。
         \item 建一个小型个人知识库（白皮书、收藏文章、喜欢的博主字幕）。
+        \item 为自己的安全策略和模型选型定一份“最低配置原则”。
       \end{itemize}
     \item 最后想说：
       \begin{itemize}
         \item AI 不会取代有架构思维和 Domain Knowledge 的人。
-        \item 拥抱变化，"用好AI"相比"不会使用AI"会带来显著的生产力差距。
+        \item 但会大幅拉开“会用 AI 的人”和“不会用 AI 的人”之间的生产力差距。
       \end{itemize}
   \end{itemize}
 \end{frame}
